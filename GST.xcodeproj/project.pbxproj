@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12B5496F1F3F7FEB0060BC73 /* AmountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B5496E1F3F7FEB0060BC73 /* AmountTableViewCell.swift */; };
 		12E711601F3F141B00AABDDD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E7115F1F3F141B00AABDDD /* AppDelegate.swift */; };
 		12E711621F3F141B00AABDDD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E711611F3F141B00AABDDD /* ViewController.swift */; };
 		12E711651F3F141B00AABDDD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E711631F3F141B00AABDDD /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12B5496E1F3F7FEB0060BC73 /* AmountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountTableViewCell.swift; sourceTree = "<group>"; };
 		12E7115C1F3F141B00AABDDD /* GST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GST.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E7115F1F3F141B00AABDDD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12E711611F3F141B00AABDDD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12B5496D1F3F7F800060BC73 /* Custom TableView Cell */ = {
+			isa = PBXGroup;
+			children = (
+				12B5496E1F3F7FEB0060BC73 /* AmountTableViewCell.swift */,
+			);
+			name = "Custom TableView Cell";
+			sourceTree = "<group>";
+		};
 		12E711531F3F141B00AABDDD = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +111,7 @@
 			children = (
 				12E7115F1F3F141B00AABDDD /* AppDelegate.swift */,
 				12E711611F3F141B00AABDDD /* ViewController.swift */,
+				12B5496D1F3F7F800060BC73 /* Custom TableView Cell */,
 				12E711631F3F141B00AABDDD /* Main.storyboard */,
 				12E711691F3F141B00AABDDD /* Assets.xcassets */,
 				12E7116B1F3F141B00AABDDD /* LaunchScreen.storyboard */,
@@ -196,6 +207,7 @@
 				TargetAttributes = {
 					12E7115B1F3F141B00AABDDD = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 7D83493TRQ;
 						ProvisioningStyle = Automatic;
 					};
 					12E711721F3F141C00AABDDD = {
@@ -265,6 +277,7 @@
 				12E711681F3F141B00AABDDD /* GST.xcdatamodeld in Sources */,
 				12E711621F3F141B00AABDDD /* ViewController.swift in Sources */,
 				12E711601F3F141B00AABDDD /* AppDelegate.swift in Sources */,
+				12B5496F1F3F7FEB0060BC73 /* AmountTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7D83493TRQ;
 				INFOPLIST_FILE = GST/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rubiya.GST;
@@ -430,6 +444,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7D83493TRQ;
 				INFOPLIST_FILE = GST/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Rubiya.GST;
@@ -511,6 +526,7 @@
 				12E711891F3F141C00AABDDD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		12E7118A1F3F141C00AABDDD /* Build configuration list for PBXNativeTarget "GSTTests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +535,7 @@
 				12E7118C1F3F141C00AABDDD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		12E7118D1F3F141C00AABDDD /* Build configuration list for PBXNativeTarget "GSTUITests" */ = {
 			isa = XCConfigurationList;
@@ -527,6 +544,7 @@
 				12E7118F1F3F141C00AABDDD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
