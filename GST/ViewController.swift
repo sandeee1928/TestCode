@@ -10,12 +10,46 @@ import UIKit
 
 enum TaxRate: Float {
     
-    case Zero = 0.0
+    case zero = 0.0
     case pointTwoFive = 0.25
     case three = 3.0
     case five  = 5.0
     case eighteen = 18.0
     case twentyEight = 28.0
+    
+    func increment() -> TaxRate {
+        switch self {
+        case .zero:
+            return .pointTwoFive
+        case .pointTwoFive:
+            return .three
+        case .three:
+            return .five
+        case .five:
+            return .eighteen
+        case .eighteen:
+            return .twentyEight
+        case .twentyEight:
+            return .zero
+        }
+    }
+    
+    func decrement() -> TaxRate {
+        switch self {
+        case .zero:
+            return .twentyEight
+        case .pointTwoFive:
+            return .zero
+        case .three:
+            return .pointTwoFive
+        case .five:
+            return .three
+        case .eighteen:
+            return .five
+        case .twentyEight:
+            return .eighteen
+        }
+    }
 }
 
 struct Constants {
@@ -36,7 +70,7 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate,U
     @IBOutlet weak var tableV: UITableView!
     var amountValue :Float? = 1000.0
     var textFiledValue : String = ""
-    var taxRate : Float? = 28.0
+    var taxRate = TaxRate.twentyEight
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +100,7 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate,U
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier:Constants.aGstRateCellIdentifier, for: indexPath) as? GstRateTableViewCell
             
-            cell?.gstRateLabel?.text = "\("GSTRate") \(String(describing: taxRate!))\("%")"
+            cell?.gstRateLabel?.text = "\("GSTRate") \(String(describing: taxRate))\("%")"
             return cell!
        
         case 2:
@@ -80,13 +114,13 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate,U
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.aGstTaxPriceCellIdentifier, for: indexPath) as? GstTAxTableViewCell
             
             print("")
-            cell?.gstTaxLabe?.text = "\(Constants.aRuppesSymbole) \(self.calculateTheTax(aTax: taxRate!, amountValue: amountValue!, isTotalValue: false))"
+            cell?.gstTaxLabe?.text = "\(Constants.aRuppesSymbole) \(self.calculateTheTax(aTax: taxRate.rawValue, amountValue: amountValue!, isTotalValue: false))"
             return cell!
 
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.aTotalBillCellIdentifier, for: indexPath) as? TotalBillTableViewCell
             // Total Bill
-            cell?.totalBillLabel?.text = "\(Constants.aRuppesSymbole) \(self.calculateTheTax(aTax: taxRate!, amountValue: amountValue!, isTotalValue: true))"
+            cell?.totalBillLabel?.text = "\(Constants.aRuppesSymbole) \(self.calculateTheTax(aTax: taxRate.rawValue, amountValue: amountValue!, isTotalValue: true))"
             return cell!
     
         default:
@@ -130,7 +164,6 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate,U
         default:
             return 44.0
         }
-
     }
 
   // Mark : UITextField delegate method
@@ -146,84 +179,14 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDelegate,U
             return true
     }
     
-    @IBAction func increaseAndDecreaseTheRate(_ sender: Any) {
-        
-        let aValue : Float = taxRate!
-        let enumValue = TaxRate.self
-        
-        if (sender as AnyObject).tag == 2 {
-            switch aValue {
-                case enumValue.Zero.rawValue:
-                taxRate = TaxRate.Zero.rawValue
-                break
-           
-            case enumValue.pointTwoFive.rawValue:
-                taxRate = TaxRate.Zero.rawValue
-                break
-
-            case enumValue.three.rawValue:
-                taxRate = TaxRate.pointTwoFive.rawValue
-                break
-
-            case enumValue.five.rawValue:
-                taxRate = TaxRate.three.rawValue
-                break
-                
-            case enumValue.eighteen.rawValue:
-                taxRate = TaxRate.five.rawValue
-                break
-                
-            case enumValue.twentyEight.rawValue:
-                taxRate = TaxRate.eighteen.rawValue
-                break
-
-            default:
-                break
-                
-            }
-            
-        }else{
-            
-            switch aValue {
-                
-            case enumValue.Zero.rawValue:
-                taxRate = TaxRate.pointTwoFive.rawValue
-                break
-                
-            case enumValue.pointTwoFive.rawValue:
-                taxRate = TaxRate.three.rawValue
-                break
-                
-            case enumValue.three.rawValue:
-                taxRate = TaxRate.five.rawValue
-                break
-                
-            case enumValue.five.rawValue:
-                taxRate = TaxRate.eighteen.rawValue
-                break
-                
-            case enumValue.eighteen.rawValue:
-                taxRate = TaxRate.twentyEight.rawValue
-                break
-                
-            case enumValue.twentyEight.rawValue:
-                taxRate = TaxRate.twentyEight.rawValue
-                break
-                
-            default:
-                break
-
-            
-        }
-    }
-        
+    @IBAction func increaseAndDecreaseTheRate(_ sender: UIButton) {
+        taxRate = (sender.tag == 2) ? taxRate.increment() : taxRate.decrement()
         self.tableV.reloadData()
 }
     
     // Get the TaxRate function 
     
     public func calculateTheTax(aTax: Float, amountValue: Float,isTotalValue:Bool) -> Float{
-        
         let value = isTotalValue ? (amountValue/100)*aTax + amountValue :(amountValue/100)*aTax
         return  value
     }
